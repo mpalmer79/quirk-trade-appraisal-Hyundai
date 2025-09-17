@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="successTitle">Thanks! - Quirk Hyundai</title>
   <link rel="stylesheet" href="/assets/styles.css" />
+
+  <!-- Watermark background -->
+  <style>
+    /* Light page bg + full-page watermark image behind the content */
+    body {
+      min-height: 100vh;
+      background: #f7f7f7;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;      /* stay put while scrolling */
+      inset: 0;
+      background-image: url("/assets/quirk-lot.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;  /* fill viewport */
+      opacity: 0.08;           /* subtle watermark */
+      z-index: -1;             /* behind everything */
+      pointer-events: none;    /* never block clicks */
+    }
+    @media (prefers-color-scheme: dark) {
+      body::before { opacity: 0.12; } /* a touch stronger in dark mode */
+    }
+  </style>
 </head>
 <body>
   <main style="max-width:720px;margin:40px auto;background:#fff;padding:24px;
@@ -21,7 +46,9 @@
         Submit another vehicle
       </a>
       <a class="ghost-btn" href="https://www.quirkhyundai.com" target="_blank" 
-         rel="noopener noreferrer" style="text-decoration:none" data-i18n="backToDealer"> Back to Quirk Hyundai </a>
+         rel="noopener noreferrer" style="text-decoration:none" data-i18n="backToDealer">
+        Back to Quirk Hyundai
+      </a>
     </div>
 
     <!-- Logo inside same white card -->
