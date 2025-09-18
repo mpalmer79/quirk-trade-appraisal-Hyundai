@@ -3,56 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
   <title data-i18n="successTitle">Thanks! - Quirk Hyundai</title>
   <link rel="stylesheet" href="/assets/styles.css" />
+
   <style>
-    body {
-      position: relative;
+    /* ===== Desktop/tablet =====
+       Center the success card and show the soft lot watermark */
+    body.success {
       min-height: 100vh;
+      display: flex;
+      align-items: center;          /* vertical centering */
+      justify-content: center;      /* horizontal centering */
+      padding: 40px 16px;           /* breathing room */
+      background:
+        /* overlay controls overall darkness of the background image */
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url('/assets/quirk-lot.png') center / cover no-repeat fixed;
       margin: 0;
-      font-family: system-ui, sans-serif;
     }
-    /* Watermark background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
+
+    /* The white “library card” */
+    main.success-card {
+      max-width: 720px;
       width: 100%;
-      height: 100%;
-      background: url("/assets/quirk-lot.png") center center / cover no-repeat;
-      opacity: 0.35; /* Increased for stronger visibility */
-      z-index: -1;
+      background: rgba(255,255,255,0.50);  /* 50% white */
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 { color:#004a2f; margin:0 0 10px; }
+    p.lead { margin:0 0 18px; }
+
+    .btnrow {
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-top:18px;
+    }
+    .btnrow a { text-decoration:none; }
+
+    .brand-img {
+      width:100%;
+      max-width:720px;
+      height:auto;
+      display:block;
+      margin:32px auto 0;
+      cursor:pointer;
+    }
+
+    /* ===== Mobile-only =====
+       Move the card up slightly and stack the buttons */
+    @media (max-width: 640px) {
+      body.success {
+        align-items: flex-start;   /* push card toward the top */
+        padding-top: 16px;         /* small breathing room */
+      }
+      main.success-card {
+        background: rgba(255,255,255,0.50); /* keep at 50% on phones too */
+      }
+      .btnrow { flex-direction: column; }
     }
   </style>
 </head>
-<body>
-  <main style="max-width:720px;margin:40px auto;background:#fff;padding:24px;
-               border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">
-    <h1 style="text-align:center;margin:0 0 10px;color:#004a2f" data-i18n="successHeading">
-      Thank you!
-    </h1>
-    <p style="text-align:center;font-size:16px" data-i18n="successMessage">
+
+<body class="success">
+  <main class="success-card">
+    <h1 data-i18n="successHeading">Thank you!</h1>
+    <p class="lead" data-i18n="successMessage">
       We received your trade-in details. A Quirk Hyundai specialist will contact you shortly.
     </p>
 
-    <div style="display:flex;gap:10px;justify-content:center;margin-top:18px">
-      <a class="spanish-btn" href="/" style="text-decoration:none" data-i18n="submitAnother">
-        Submit another vehicle
-      </a>
-      <a class="ghost-btn" href="https://www.quirkhyundai.com" target="_blank" 
-         rel="noopener noreferrer" style="text-decoration:none" data-i18n="backToDealer"> 
-         Back to Quirk Hyundai 
+    <div class="btnrow">
+      <a class="spanish-btn" href="/" data-i18n="submitAnother">Submit another vehicle</a>
+      <a class="ghost-btn" href="https://www.quirkhyundai.com" target="_blank" rel="noopener noreferrer" data-i18n="backToDealer">
+        Back to Quirk Hyundai
       </a>
     </div>
 
-    <!-- Logo inside same white card -->
-    <div style="margin-top:32px; text-align:center;">
-      <a href="https://www.quirkhyundai.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/quirkworks-new.jpg" alt="Quirk Works Logo"
-             style="width:100%; max-width:720px; height:auto; display:block; margin:0 auto; cursor:pointer;" />
-      </a>
-    </div>
+    <a href="https://www.quirkhyundai.com" target="_blank" rel="noopener noreferrer">
+      <img class="brand-img" src="/assets/quirkworks-new.jpg" alt="Quirk Works Logo">
+    </a>
   </main>
 
   <!-- Load the same app.js to enable Spanish translation -->
